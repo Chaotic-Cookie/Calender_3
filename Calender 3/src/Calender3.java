@@ -55,7 +55,9 @@ public class Calender3 {
             } else if (word.equals("ev")) { //adds an event
                 //makingEvents();
 
-            } else if (word.equals("q")) { //quit
+            } else if(word.equals("fp")){ //prints to file
+
+            }else if(word.equals("q")) { //quit
                 toQuit = "yes";
             } else {
                 System.out.println("Please enter a valid command.");
@@ -196,6 +198,7 @@ public class Calender3 {
         System.out.println("\"n\" to display the next calender.");
         System.out.println("\"p\" to display the previous calender.");
         System.out.println("\"ev\" to enter an event.");
+        System.out.println("\"fp\" to print calender to file.");
         System.out.println("\"q\" to quit the program.");
     }
 

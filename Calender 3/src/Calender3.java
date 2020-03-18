@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.time.Month;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -276,14 +277,14 @@ public class Calender3 {
         String printMonth = input.next();
         System.out.print("Which file would you like to save too? ");
         String filesave = input.next();
-
+        PrintStream output = new PrintStream(output(input)); //another method???
 
 
         }
 
 
 
-        public static void drawArt(int month){
+    public static void drawArt(int month){
 
             if(month == 1){
                 System.out.println("  _______                  ________       ");

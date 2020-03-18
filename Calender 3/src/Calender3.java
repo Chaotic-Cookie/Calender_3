@@ -259,10 +259,26 @@ public class Calender3 {
         }
 
         public static String fileName() {
+        String word = "";
+        System.out.print("Would you like to upload your own file? ");
+            if(word.equals("yes")){
+                System.out.print("Event file name: ");
+                String file = input.next();
+                return file;
+            }else {
 
-            System.out.print("Event file name: ");
-            String file = input.next();
-            return file;
+            }
+
+        }
+
+        public static void printingFile() { //needs to print the asci art, calander month and save file
+        System.out.print("Which month would you like to print? ");
+        String printMonth = input.next();
+        System.out.print("Which file would you like to save too? ");
+        String filesave = input.next();
+
+
+
         }
 
 

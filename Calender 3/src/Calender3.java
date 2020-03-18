@@ -51,7 +51,7 @@ public class Calender3 {
                 drawMonth(month, day);
                 displayDate(month, day);
             } else if (word.equals("ev")) { //adds an event
-                makingEvents(input);
+                makingEvents();
 
             } else if (word.equals("q")) { //quit
                 toQuit = "yes";
@@ -246,14 +246,14 @@ public class Calender3 {
 
          }
 
-        public static void makingEvents(input) throws FileNotFoundException{
-            File f = new File(fileName();
+        public static void makingEvents() throws FileNotFoundException{
+            File f = new File(fileName());
             System.out.print("Event information: ");
             File eventName = new File(input.nextLine());
 
         }
 
-        public static String fileName(input) {
+        public static String fileName() {
 
             System.out.print("Event file name: ");
             String file = input.next();

@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.SimpleTimeZone;
 public class Calender3 {
 
-    //THE ADULT IS INSIDE THIS CODE
+    //i live
 
     public static final int SIZE = 10;
     public static Scanner input = new Scanner(System.in);

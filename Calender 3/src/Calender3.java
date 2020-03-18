@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.SimpleTimeZone;
 public class Calender3 {
 
+    //THE ADULT IS INSIDE THIS CODE
+
     public static final int SIZE = 10;
     public static Scanner input = new Scanner(System.in);
     private static String[][] arr = new String[12][];
@@ -51,7 +53,7 @@ public class Calender3 {
                 drawMonth(month, day);
                 displayDate(month, day);
             } else if (word.equals("ev")) { //adds an event
-                makingEvents();
+                //makingEvents();
 
             } else if (word.equals("q")) { //quit
                 toQuit = "yes";

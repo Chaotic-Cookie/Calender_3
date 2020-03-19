@@ -83,9 +83,7 @@ public class Calender3 {
         int year = 2020;
 
         int firstday = getFirst(month);
-        System.out.println(firstday);
         firstday = cal.get(Calendar.DAY_OF_WEEK);
-        System.out.println(firstday);
         firstday = getFirst(month);
 
         int lastday = LastDayofMonth(month);
@@ -93,7 +91,6 @@ public class Calender3 {
         for (int space = 2; space <= (SIZE * 7) / 2; space++) {
             System.out.print(" ");
         }
-        System.out.print(month);
         System.out.println();
         drawArt(month);
         System.out.println(); //repeats the boarder of the rows
@@ -262,7 +259,6 @@ public class Calender3 {
         } else {
             for (int i = 1; i <= month - 1; i++) {
                 totaldays += LastDayofMonth(i);
-                System.out.println(totaldays);
             }
         }
         return (totaldays) % 7;

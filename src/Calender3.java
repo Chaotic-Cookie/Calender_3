@@ -306,14 +306,17 @@ public class Calender3 {
 
     }
 
-    public static void drawEventRow(int month, int day){
-        if(arr[month-1][day] != null){
-            System.out.print(arr[month-1][day]);
-            System.out.print(" ");
-        }else{
-            System.out.print(" ");
+    public static void drawEventRow(int month, int day) {
+        for (int l = 1; l <= 7; l++) {
+
+            if (arr[month - 1][day] != null) {
+                System.out.print(arr[month - 1][day]);
+                System.out.print(" ");
+            } else {
+                System.out.print(" ");
+            }
+            System.out.print("|");
         }
-        System.out.print("|");
     }
 
     public static String fileName() throws FileNotFoundException {

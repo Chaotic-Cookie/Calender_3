@@ -63,7 +63,7 @@ public class Calender3 {
                 //makingEvents(month);
 
             } else if(word.equals("fp")){ //prints to file
-                printingFile(month);
+                printingFile();
 
             }else if(word.equals("q")) { //quit
                 toQuit = "yes";
@@ -326,11 +326,14 @@ public class Calender3 {
         return word;
     }
 
-    public static void printingFile(int day) throws FileNotFoundException { //needs to print the asci art, calander month and save file
+    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which date would you like to print? ");
-        String printMonth = input.next();
+        //String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
-        int month = 12;
+        int[] date = getDateFromUser();
+
+        int month = date[1];
+        int day = date[0];
 
         System.out.print("Which file would you like to save to? ");
         String filesave = input.next();

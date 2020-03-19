@@ -306,6 +306,16 @@ public class Calender3 {
 
     }
 
+    public static void drawEventRow(int month, int day){
+        if(arr[month-1][day] != null){
+            System.out.print(arr[month-1][day]);
+            System.out.print(" ");
+        }else{
+            System.out.print(" ");
+        }
+        System.out.print("|");
+    }
+
     public static String fileName() throws FileNotFoundException {
         String word = "";
         System.out.print("Would you like to upload your own file? (Y/N) ");
@@ -323,19 +333,17 @@ public class Calender3 {
 
     public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which date would you like to print? ");
-        //String printMonth = input.next();
+
         // You gotta get the month as an integer so you can pass it into drawMonth()
         int[] date = getDateFromUser();
-
         int month = date[1];
         int day = date[0];
-
         System.out.print("Which file would you like to save to? ");
         String filesave = input.next();
         PrintStream output = new PrintStream(new File(filesave));
         PrintStream console = new PrintStream(System.out);
         System.setOut(output);  // This causes any Print statements to print
-                                // to the printstream instead of the console
+        // to the printstream instead of the console
         drawMonth(month, day);
         System.setOut(console);
 

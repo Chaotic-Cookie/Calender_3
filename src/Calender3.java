@@ -1,11 +1,9 @@
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.Scanner;
-import java.util.SimpleTimeZone;
+
 public class Calender3 {
 
     //i live
@@ -266,14 +264,15 @@ public class Calender3 {
         System.out.print("Would you like to upload your own file? (Y/N) ");
 
         if(word.equalsIgnoreCase("y")){
-            System.out.print("Event file name: ");
+            System.out.println("Event file name: ");
             String file = input.next();
             return file;
-        }else {
+        }else if(word.equalsIgnoreCase("n")){
             new File("calanderEvents.txt");
+        }else{
+            System.out.println("Please enter a valid option.");
         }
-
-        return ;
+        return word;
     }
 
     public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file

@@ -1,4 +1,5 @@
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -335,15 +336,16 @@ public class Calender3 {
         // You gotta get the month as an integer so you can pass it into drawMonth()
         int month = 12;
 
-        System.out.print("Which file would you like to save too? ");
+        System.out.print("Which file would you like to save to? ");
         String filesave = input.next();
-        while(true){
-            PrintStream output = new PrintStream(new File(filesave));
-            System.setOut(output);  // This causes any Print statements to print
-            // to the printstream instead of the console
-            drawMonth(month, day);
-            System.setOut(output);
-        }
+        PrintStream output = new PrintStream(new File(filesave));
+        PrintStream console = new PrintStream(System.out);
+        System.setOut(output);  // This causes any Print statements to print
+                                // to the printstream instead of the console
+        drawMonth(month, day);
+        System.setOut(console);
+
+
     }
 
 

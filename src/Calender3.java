@@ -259,7 +259,7 @@ public class cal_3 {
         File f = new File(fileName()); // This should be your event file.
         PrintStream pOut = new PrintStream(f);
         // Get a date from a user.
-        String date = "Date from user ##/##"
+        String date = "Date from user ##/##";
         System.out.print("Event information: ");
         File eventName = new File(input.nextLine());
 

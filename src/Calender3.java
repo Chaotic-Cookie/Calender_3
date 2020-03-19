@@ -1,10 +1,11 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class Calender3 {
+public class cal_3 {
 
     //i live
 
@@ -56,10 +57,10 @@ public class Calender3 {
                 displayDate(month, day);
 
             } else if (word.equals("ev")) { //adds an event
-                makingEvents();
+                makingEvents(month);
 
             } else if(word.equals("fp")){ //prints to file
-                printingFile();
+                printingFile(month);
 
             }else if(word.equals("q")) { //quit
                 toQuit = "yes";
@@ -254,8 +255,14 @@ public class Calender3 {
 
     }
 
-    public static void makingEvents() throws FileNotFoundException{
+    public static void makingEvents(int file) throws FileNotFoundException{
         File f = new File(fileName()); // This should be your event file.
+        if(!f.exists()){
+            return;
+        }
+        while(input.hasNextLine()){
+
+        }
         PrintStream pOut = new PrintStream(f);
         // Get a date from a user.
         String date = "Date from user ##/##"; //Change this
@@ -265,10 +272,9 @@ public class Calender3 {
 
     }
 
-    public static String fileName() {
+    public static String fileName() throws FileNotFoundException {
         String word = "";
         System.out.print("Would you like to upload your own file? (Y/N) ");
-
         if(word.equalsIgnoreCase("y")){
             System.out.println("Event file name: ");
             String file = input.next();
@@ -281,19 +287,21 @@ public class Calender3 {
         return word;
     }
 
-    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
-        System.out.print("Which month would you like to print? ");
+    public static void printingFile(int day) throws FileNotFoundException { //needs to print the asci art, calander month and save file
+        System.out.print("Which date would you like to print? ");
         String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
-        int month = 12; // Change this!
+        int month = 12;
+
         System.out.print("Which file would you like to save too? ");
         String filesave = input.next();
-        PrintStream output = new PrintStream(new File(filesave));
-        System.setOut(output);  // This causes any Print statements to print
-        // to the printstream instead of the console
-        drawMonth(month);
-        System.setOut(output);
-
+        while(){
+            PrintStream output = new PrintStream(new File(filesave));
+            System.setOut(output);  // This causes any Print statements to print
+            // to the printstream instead of the console
+            drawMonth(month, day);
+            System.setOut(output);
+        }
     }
 
 
@@ -645,3 +653,5 @@ public class Calender3 {
     }
 
 }
+
+

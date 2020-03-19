@@ -60,7 +60,7 @@ public class Calender3 {
                 displayDate(month, day);
 
             } else if (word.equals("ev")) { //adds an event
-                //makingEvents(month);
+                makingEvents();
 
             } else if(word.equals("fp")){ //prints to file
                 printingFile();
@@ -106,20 +106,21 @@ public class Calender3 {
             weeks = 5;
         }
 
-        drawWeek(lastday, firstday, day, weeks);
+        drawWeek(lastday, firstday, day, weeks, month, int row, int drawNumberRow, int drawEventRow, int drawEmptyRow);
 
         System.out.println();
 
     }
 
-    public static void drawWeek(int lastday,int firstday,int day, int weeks){
+    public static void drawWeek(int lastday,int firstday,int day, int weeks, int month, int row,
+                                int drawNumberRow, int drawEventRow, int drawEmptyRow){
         // Prints the bar.
         boolean placeholder = false;
         drawBar();
         for (int i = 0; i < weeks; i++){
             drawNumberRow(i, lastday, firstday, day);
-            //drawEventRow();
-            drawEmptyRows(4);// the 4 will become 3 when drawEventRow is put in.
+            drawEventRow(row, firstday, month);
+            drawEmptyRows(3);// the 4 will become 3 when drawEventRow is put in.
             drawBar();
         }
     }

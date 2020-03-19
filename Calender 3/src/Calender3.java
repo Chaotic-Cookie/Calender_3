@@ -1,14 +1,14 @@
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.time.Month;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.SimpleTimeZone;
 public class Calender3 {
 
-    // TESTING BRANCHES
-    // SECOND TEST
+    //i live
 
     public static final int SIZE = 10;
     public static Scanner input = new Scanner(System.in);
@@ -54,9 +54,11 @@ public class Calender3 {
                 drawMonth(month, day);
                 displayDate(month, day);
             } else if (word.equals("ev")) { //adds an event
-                makingEvents();
+                //makingEvents();
 
-            } else if (word.equals("q")) { //quit
+            } else if(word.equals("fp")){ //prints to file
+
+            }else if(word.equals("q")) { //quit
                 toQuit = "yes";
             } else {
                 System.out.println("Please enter a valid command.");
@@ -197,6 +199,7 @@ public class Calender3 {
         System.out.println("\"n\" to display the next calender.");
         System.out.println("\"p\" to display the previous calender.");
         System.out.println("\"ev\" to enter an event.");
+        System.out.println("\"fp\" to print calender to file.");
         System.out.println("\"q\" to quit the program.");
     }
 
@@ -213,14 +216,12 @@ public class Calender3 {
 
     }
 
-    public static String[][] monthArray() {
-        String[][] arr = new String[12][];
+    public static int[][] monthArray() {
+        Int[][] arr = new Int[12][];
         for (int i = 0; i < arr.length; i++) {
             int months = i + 1;
             int daysinmonth = LastDayofMonth(months);
-
             arr[i] = new String[daysinmonth];
-
         }
         return arr;
 
@@ -240,374 +241,397 @@ public class Calender3 {
         }
         return (totaldays) % 7;
     }
-         public static int[] getDateFromUser(){
-            int[] arr = new int[2];
-            String date = input.next();
-            arr[0] = dayFromDate(date);
-            arr[1] = monthFromDate(date);
-            return arr;
+    public static int[] getDateFromUser(){
+        int[] arr = new int[2];
+        String date = input.next();
+        arr[0] = dayFromDate(date);
+        arr[1] = monthFromDate(date);
+        return arr;
 
-         }
+    }
 
-        public static void makingEvents() throws FileNotFoundException{
-            File f = new File(fileName());
-            System.out.print("Event information: ");
-            File eventName = new File(input.nextLine());
+    public static void makingEvents() throws FileNotFoundException{
+        File f = new File(fileName());
+        System.out.print("Event information: ");
+        File eventName = new File(input.nextLine());
 
-        }
+    }
 
-        public static String fileName() {
+    public static String fileName() {
+        String word = "";
+        System.out.print("Would you like to upload your own file? (Y/N) ");
 
+        if(word.("yes")){
             System.out.print("Event file name: ");
             String file = input.next();
             return file;
+        }else {
+            new File("calanderEvents.txt");
         }
 
+        return ;
+    }
+
+    public static void printingFile() { //needs to print the asci art, calander month and save file
+        System.out.print("Which month would you like to print? ");
+        String printMonth = input.next();
+        // You gotta get the month as an integer so you can pass it into drawMonth()
+        int month = 12 // Change this!
+        System.out.print("Which file would you like to save too? ");
+        String filesave = input.next();
+        PrintStream output = new PrintStream(new File(filesave));
+        System.setOut(PrintStream output);  // This causes any Print statements to print
+                                            // to the printstream instead of the console
+        drawMonth(month)
+        System.setOut(Console);
+
+    }
 
 
-        public static void drawArt(int month){
 
-            if(month == 1){
-                System.out.println("  _______                  ________       ");
-                System.out.println("  |       \\              /        |      ");
-                System.out.println("  |         \\           /         |      ");
-                System.out.println("  |           \\        /          |      ");
-                System.out.println("  |             \\     /           |      ");
-                System.out.println("  |               \\  /            |      ");
-                System.out.println("__|_________________V______________|______");
-                System.out.println("|                |      |                |");
-                System.out.println("|                |      |                |");
-                System.out.println("|                |      |                |");
-                System.out.println("|________________|      |________________|");
-                System.out.println("|                |      |                |");
-                System.out.println("|________________|      |________________|");
-                System.out.println("|                |      |                |");
-                System.out.println("|                |      |                |");
-                System.out.println("|                |      |                |");
-                System.out.println("|                |      |                |");
-                System.out.println("|________________|______|________________|");
+    public static void drawArt(int month){
 
-                //heart
-            } else if (month == 2){
-                System.out.println("        @@@@@@             @@@@@@        ");
-                System.out.println("      @@      @@         @@      @@      ");
-                System.out.println("    @@          @@     @@          @@    ");
-                System.out.println("  @               @   @               @  ");
-                System.out.println(" @                  @                  @ ");
-                System.out.println("@                                       @");
-                System.out.println("@                                       @");
-                System.out.println("@                                       @");
-                System.out.println(" @                                     @ ");
-                System.out.println("  @                                  @   ");
-                System.out.println("   @                                @    ");
-                System.out.println("    @@                            @@     ");
-                System.out.println("      @@                        @@       ");
-                System.out.println("        @@                    @@         ");
-                System.out.println("          @@                @@           ");
-                System.out.println("            @@            @@             ");
-                System.out.println("              @@        @@               ");
-                System.out.println("                @@    @@                 ");
-                System.out.println("                  @@@                    ");
-                System.out.println("                   @                     ");
+        if(month == 1){
+            System.out.println("  _______                  ________       ");
+            System.out.println("  |       \\              /        |      ");
+            System.out.println("  |         \\           /         |      ");
+            System.out.println("  |           \\        /          |      ");
+            System.out.println("  |             \\     /           |      ");
+            System.out.println("  |               \\  /            |      ");
+            System.out.println("__|_________________V______________|______");
+            System.out.println("|                |      |                |");
+            System.out.println("|                |      |                |");
+            System.out.println("|                |      |                |");
+            System.out.println("|________________|      |________________|");
+            System.out.println("|                |      |                |");
+            System.out.println("|________________|      |________________|");
+            System.out.println("|                |      |                |");
+            System.out.println("|                |      |                |");
+            System.out.println("|                |      |                |");
+            System.out.println("|                |      |                |");
+            System.out.println("|________________|______|________________|");
 
-                //four leaf clover
-            } else if (month == 3){
-                System.out.println("                  :::::::::::::::                 ");
-                System.out.println("              :::::::::::::::::::::               ");
-                System.out.println("             :::::::::::::::::::::::              ");
-                System.out.println("            :::::::::::::::::::::::::             ");
-                System.out.println("            :::::::::::::::::::::::::             ");
-                System.out.println("            :::::::::::::::::::::::::             ");
-                System.out.println("             ::::::::::::::::::::::::             ");
-                System.out.println("             :::::::::::::::::::::::              ");
-                System.out.println("              :::::::::::::::::::::               ");
-                System.out.println("               ::::::::::::::::::                 ");
-                System.out.println("      ::::::::::::::::::::::::::::::::::::        ");
-                System.out.println("    ::::::::::::::::::::::::::::::::::::::::      ");
-                System.out.println("   :::::::::::::::::::::::::::::::::::::::::::    ");
-                System.out.println("  :::::::::::::::::::::::::::::::::::::::::::::   ");
-                System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::");
-                System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::: ");
-                System.out.println(" :::::::::::::::::::::::::::::::::::::::::::::::  ");
-                System.out.println("   :::::::::::::::::::::::::::::::::::::::::::    ");
-                System.out.println("   ::::::::::::::::::::::::::::::::::::::::::     ");
-                System.out.println("   :::::::::::::::::   ;::::::::::::::::::::      ");
-                System.out.println("   :::::::::::::::    ;;:::::::::::::::::::       ");
-                System.out.println("      :::::::::::    ;;        :::::::::::        ");
-                System.out.println("           ::::::   ;;            ::::::          ");
-                System.out.println("                 ;;;;                             ");
+            //heart
+        } else if (month == 2){
+            System.out.println("        @@@@@@             @@@@@@        ");
+            System.out.println("      @@      @@         @@      @@      ");
+            System.out.println("    @@          @@     @@          @@    ");
+            System.out.println("  @               @   @               @  ");
+            System.out.println(" @                  @                  @ ");
+            System.out.println("@                                       @");
+            System.out.println("@                                       @");
+            System.out.println("@                                       @");
+            System.out.println(" @                                     @ ");
+            System.out.println("  @                                  @   ");
+            System.out.println("   @                                @    ");
+            System.out.println("    @@                            @@     ");
+            System.out.println("      @@                        @@       ");
+            System.out.println("        @@                    @@         ");
+            System.out.println("          @@                @@           ");
+            System.out.println("            @@            @@             ");
+            System.out.println("              @@        @@               ");
+            System.out.println("                @@    @@                 ");
+            System.out.println("                  @@@                    ");
+            System.out.println("                   @                     ");
 
-                //strawberry
-            }else if (month == 4){
-                System.out.println("             ;:  :::          :::  :;             ");
-                System.out.println("              ;:      ::::::      :;              ");
-                System.out.println("              ;,:                :,;              ");
-                System.out.println("        ::                              :::       ");
-                System.out.println("        ::::                          ::::        ");
-                System.out.println("        :,;:;,:                    :,,:;,;        ");
-                System.out.println("       :    ;;    :,,:       ,,:    ;;    :       ");
-                System.out.println("    :      :,    ;;:;;      ;;:;;    ;;      :    ");
-                System.out.println("   :       ;;  :;:   ;;    ;;   :;;  ;;       :   ");
-                System.out.println("  :        ;,;;;      :;;;;;      :;:,;        :  ");
-                System.out.println("  :         ;;          ::          ;;          : ");
-                System.out.println(" :                                              : ");
-                System.out.println(" :                                              : ");
-                System.out.println("  :                                             : ");
-                System.out.println("  :        lsssl                  lsssl        :  ");
-                System.out.println("  :       lsssssl                lsssssl       :  ");
-                System.out.println("   :       lsssl                  lsssl       :   ");
-                System.out.println("    :                ss    ss                :    ");
-                System.out.println("     :                 ssss                 :     ");
-                System.out.println("      :                                     :     ");
-                System.out.println("       :                                  :       ");
-                System.out.println("        :                                :        ");
-                System.out.println("         :                              :         ");
-                System.out.println("          :                            :          ");
-                System.out.println("            :                        :            ");
-                System.out.println("             :                      :             ");
-                System.out.println("               :                  :               ");
-                System.out.println("                   :            :                 ");
-                System.out.println("                     :       :                    ");
-                System.out.println("                      :____:                      ");
-                //sombrero
-            }else if (month == 5){
-                System.out.println("                     00000000                     ");
-                System.out.println("                   o;;;;;;;;;:o                   ");
-                System.out.println("                 o''''''''''''''o                 ");
-                System.out.println("                o................o                ");
-                System.out.println("                '''''''''''''''''''               ");
-                System.out.println("               ::::::::::::::::::::               ");
-                System.out.println("               llllllllllllllllllll               ");
-                System.out.println("              ,,,,,,,,,,,,,,,,,,,,,,              ");
-                System.out.println("              lllllllllllllllllllllll             ");
-                System.out.println("             ...,,,,,,,,,,,,,,,,,,,...            ");
-                System.out.println("            ,..,:::::::::::::::::::,..,           ");
-                System.out.println(":,:LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL;:");
-                System.out.println(".XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.");
-                System.out.println(",,DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD;,");
-                System.out.println(" ..,;;,'...',;:;,'...',;::;,'...',;:;,'...',;:;.. ");
-                System.out.println("  ..;oo,...:ooooo;...;oooooo;...;ooooo:...,ooo'.  ");
-                System.out.println("    ',:;'.'oooooo:..'ooooooo:'.':oooooo'..;c;,;   ");
-                System.out.println("       ::::::::::::::::::::::::::::::::::::       ");
+            //four leaf clover
+        } else if (month == 3){
+            System.out.println("                  :::::::::::::::                 ");
+            System.out.println("              :::::::::::::::::::::               ");
+            System.out.println("             :::::::::::::::::::::::              ");
+            System.out.println("            :::::::::::::::::::::::::             ");
+            System.out.println("            :::::::::::::::::::::::::             ");
+            System.out.println("            :::::::::::::::::::::::::             ");
+            System.out.println("             ::::::::::::::::::::::::             ");
+            System.out.println("             :::::::::::::::::::::::              ");
+            System.out.println("              :::::::::::::::::::::               ");
+            System.out.println("               ::::::::::::::::::                 ");
+            System.out.println("      ::::::::::::::::::::::::::::::::::::        ");
+            System.out.println("    ::::::::::::::::::::::::::::::::::::::::      ");
+            System.out.println("   :::::::::::::::::::::::::::::::::::::::::::    ");
+            System.out.println("  :::::::::::::::::::::::::::::::::::::::::::::   ");
+            System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::");
+            System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::: ");
+            System.out.println(" :::::::::::::::::::::::::::::::::::::::::::::::  ");
+            System.out.println("   :::::::::::::::::::::::::::::::::::::::::::    ");
+            System.out.println("   ::::::::::::::::::::::::::::::::::::::::::     ");
+            System.out.println("   :::::::::::::::::   ;::::::::::::::::::::      ");
+            System.out.println("   :::::::::::::::    ;;:::::::::::::::::::       ");
+            System.out.println("      :::::::::::    ;;        :::::::::::        ");
+            System.out.println("           ::::::   ;;            ::::::          ");
+            System.out.println("                 ;;;;                             ");
 
-                //sun
-            }else if (month == 6){
-                System.out.println("                    NN       N                    ");
-                System.out.println("                  NNNNNN  NNNNNN                  ");
-                System.out.println("            NNNNNNNNNNNNNNNNNNNNNNNNNN            ");
-                System.out.println("           NNNNNN                NNNNNN           ");
-                System.out.println("      NNNNNNN                       NNNNNNNN      ");
-                System.out.println("      NNNNN                            NNNNN      ");
-                System.out.println("      NNNN                              NNNN      ");
-                System.out.println("    NNNN                                  NNNN    ");
-                System.out.println("  NNNNNN                                   NNNNN  ");
-                System.out.println("   NNNN                                    NNNN   ");
-                System.out.println("   NNN                                      NNN   ");
-                System.out.println(" NNNNN    000                        000    NNNNN ");
-                System.out.println(" NNNNN   00000                      00000   NNNNN ");
-                System.out.println("   NNN   00000      W  W  W         00000   NNN   ");
-                System.out.println("    NNN   000        W   W           000    NNN   ");
-                System.out.println("  NNNNN                                    NNNNN  ");
-                System.out.println("   NNNNN                                  NNNNN   ");
-                System.out.println("      NNN                                NNN      ");
-                System.out.println("      NNNNN                            NNNNN      ");
-                System.out.println("      NNNNNNN                        NNNNNNN      ");
-                System.out.println("           NNNNN                  NNNNN           ");
-                System.out.println("            NNNNNNNNNNNN  NNNNNNNNNNNN            ");
-                System.out.println("                  NNNNNNNNNNNNNN                  ");
-                System.out.println("                    NN      NN                    ");
-                //stars
-            }else if (month == 7){
-                System.out.println("           /\\                                     /\\             ");
-                System.out.println("     _____/  \\_____                         _____/  \\_____       ");
-                System.out.println("     \\            /                         \\            /       ̑");
-                System.out.println("      \\          /                           \\          /        ");
-                System.out.println("      /          \\                           /          \\        ");
-                System.out.println("     /____    ____\\                         /____    ____\\       ");
-                System.out.println("          \\  /                                   \\  /            ");
-                System.out.println("           \\/                                     \\/             ");
+            //strawberry
+        }else if (month == 4){
+            System.out.println("             ;:  :::          :::  :;             ");
+            System.out.println("              ;:      ::::::      :;              ");
+            System.out.println("              ;,:                :,;              ");
+            System.out.println("        ::                              :::       ");
+            System.out.println("        ::::                          ::::        ");
+            System.out.println("        :,;:;,:                    :,,:;,;        ");
+            System.out.println("       :    ;;    :,,:       ,,:    ;;    :       ");
+            System.out.println("    :      :,    ;;:;;      ;;:;;    ;;      :    ");
+            System.out.println("   :       ;;  :;:   ;;    ;;   :;;  ;;       :   ");
+            System.out.println("  :        ;,;;;      :;;;;;      :;:,;        :  ");
+            System.out.println("  :         ;;          ::          ;;          : ");
+            System.out.println(" :                                              : ");
+            System.out.println(" :                                              : ");
+            System.out.println("  :                                             : ");
+            System.out.println("  :        lsssl                  lsssl        :  ");
+            System.out.println("  :       lsssssl                lsssssl       :  ");
+            System.out.println("   :       lsssl                  lsssl       :   ");
+            System.out.println("    :                ss    ss                :    ");
+            System.out.println("     :                 ssss                 :     ");
+            System.out.println("      :                                     :     ");
+            System.out.println("       :                                  :       ");
+            System.out.println("        :                                :        ");
+            System.out.println("         :                              :         ");
+            System.out.println("          :                            :          ");
+            System.out.println("            :                        :            ");
+            System.out.println("             :                      :             ");
+            System.out.println("               :                  :               ");
+            System.out.println("                   :            :                 ");
+            System.out.println("                     :       :                    ");
+            System.out.println("                      :____:                      ");
+            //sombrero
+        }else if (month == 5){
+            System.out.println("                     00000000                     ");
+            System.out.println("                   o;;;;;;;;;:o                   ");
+            System.out.println("                 o''''''''''''''o                 ");
+            System.out.println("                o................o                ");
+            System.out.println("                '''''''''''''''''''               ");
+            System.out.println("               ::::::::::::::::::::               ");
+            System.out.println("               llllllllllllllllllll               ");
+            System.out.println("              ,,,,,,,,,,,,,,,,,,,,,,              ");
+            System.out.println("              lllllllllllllllllllllll             ");
+            System.out.println("             ...,,,,,,,,,,,,,,,,,,,...            ");
+            System.out.println("            ,..,:::::::::::::::::::,..,           ");
+            System.out.println(":,:LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL;:");
+            System.out.println(".XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.");
+            System.out.println(",,DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD;,");
+            System.out.println(" ..,;;,'...',;:;,'...',;::;,'...',;:;,'...',;:;.. ");
+            System.out.println("  ..;oo,...:ooooo;...;oooooo;...;ooooo:...,ooo'.  ");
+            System.out.println("    ',:;'.'oooooo:..'ooooooo:'.':oooooo'..;c;,;   ");
+            System.out.println("       ::::::::::::::::::::::::::::::::::::       ");
 
-                //gir
-            }else if (month == 8){
-                System.out.println("                       XXXXXX                XXXXX");
-                System.out.println("                       XXXXX                 XXXXX");
-                System.out.println("                      XXXX                    XXXX");
-                System.out.println("                     XXXX                      XXX");
-                System.out.println("                     XXX                       XXX");
-                System.out.println("                     XX                        XX ");
-                System.out.println("              .......XX........................X  ");
-                System.out.println("           ..........O|O........................  ");
-                System.out.println("          ..........O|O........................   ");
-                System.out.println("         ..........O|O........................    ");
-                System.out.println("        ..........O|O.........................    ");
-                System.out.println("       ..........O|O..........................    ");
-                System.out.println("      ..........O|O..........................     ");
-                System.out.println("     ...........O|O      :::::::::...........     ");
-                System.out.println("   :::::::::...........:            :........     ");
-                System.out.println("  :          ;........:              :......      ");
-                System.out.println(" :   0        :......:                :....       ");
-                System.out.println(":              :....:          0       :...       ");
-                System.out.println(" :            :......:               ;.....       ");
-                System.out.println("  :         ;.........:             ;.....        ");
-                System.out.println("    :     :............:           :.....         ");
-                System.out.println("     :::::...............:::::::::.......         ");
-                System.out.println("         ...............................          ");
-                System.out.println("           ....../|\\...................          ");
-                System.out.println("              ../ |  \\.................          ");
-                System.out.println("               /__|____\\...........xxxx          ");
-                System.out.println("                           ..O|O...xxxxx          ");
-                System.out.println("                          ..O|O....xxxxx          ");
-                System.out.println("                          .O|O......xxxx          ");
-                System.out.println("                          ..O|O......xx           ");
-                System.out.println("                          ..............          ");
-                System.out.println("                            xxxx    xxxx          ");
-                System.out.println("                             xx      xx           ");
+            //sun
+        }else if (month == 6){
+            System.out.println("                    NN       N                    ");
+            System.out.println("                  NNNNNN  NNNNNN                  ");
+            System.out.println("            NNNNNNNNNNNNNNNNNNNNNNNNNN            ");
+            System.out.println("           NNNNNN                NNNNNN           ");
+            System.out.println("      NNNNNNN                       NNNNNNNN      ");
+            System.out.println("      NNNNN                            NNNNN      ");
+            System.out.println("      NNNN                              NNNN      ");
+            System.out.println("    NNNN                                  NNNN    ");
+            System.out.println("  NNNNNN                                   NNNNN  ");
+            System.out.println("   NNNN                                    NNNN   ");
+            System.out.println("   NNN                                      NNN   ");
+            System.out.println(" NNNNN    000                        000    NNNNN ");
+            System.out.println(" NNNNN   00000                      00000   NNNNN ");
+            System.out.println("   NNN   00000      W  W  W         00000   NNN   ");
+            System.out.println("    NNN   000        W   W           000    NNN   ");
+            System.out.println("  NNNNN                                    NNNNN  ");
+            System.out.println("   NNNNN                                  NNNNN   ");
+            System.out.println("      NNN                                NNN      ");
+            System.out.println("      NNNNN                            NNNNN      ");
+            System.out.println("      NNNNNNN                        NNNNNNN      ");
+            System.out.println("           NNNNN                  NNNNN           ");
+            System.out.println("            NNNNNNNNNNNN  NNNNNNNNNNNN            ");
+            System.out.println("                  NNNNNNNNNNNNNN                  ");
+            System.out.println("                    NN      NN                    ");
+            //stars
+        }else if (month == 7){
+            System.out.println("           /\\                                     /\\             ");
+            System.out.println("     _____/  \\_____                         _____/  \\_____       ");
+            System.out.println("     \\            /                         \\            /       ̑");
+            System.out.println("      \\          /                           \\          /        ");
+            System.out.println("      /          \\                           /          \\        ");
+            System.out.println("     /____    ____\\                         /____    ____\\       ");
+            System.out.println("          \\  /                                   \\  /            ");
+            System.out.println("           \\/                                     \\/             ");
+
+            //gir
+        }else if (month == 8){
+            System.out.println("                       XXXXXX                XXXXX");
+            System.out.println("                       XXXXX                 XXXXX");
+            System.out.println("                      XXXX                    XXXX");
+            System.out.println("                     XXXX                      XXX");
+            System.out.println("                     XXX                       XXX");
+            System.out.println("                     XX                        XX ");
+            System.out.println("              .......XX........................X  ");
+            System.out.println("           ..........O|O........................  ");
+            System.out.println("          ..........O|O........................   ");
+            System.out.println("         ..........O|O........................    ");
+            System.out.println("        ..........O|O.........................    ");
+            System.out.println("       ..........O|O..........................    ");
+            System.out.println("      ..........O|O..........................     ");
+            System.out.println("     ...........O|O      :::::::::...........     ");
+            System.out.println("   :::::::::...........:            :........     ");
+            System.out.println("  :          ;........:              :......      ");
+            System.out.println(" :   0        :......:                :....       ");
+            System.out.println(":              :....:          0       :...       ");
+            System.out.println(" :            :......:               ;.....       ");
+            System.out.println("  :         ;.........:             ;.....        ");
+            System.out.println("    :     :............:           :.....         ");
+            System.out.println("     :::::...............:::::::::.......         ");
+            System.out.println("         ...............................          ");
+            System.out.println("           ....../|\\...................          ");
+            System.out.println("              ../ |  \\.................          ");
+            System.out.println("               /__|____\\...........xxxx          ");
+            System.out.println("                           ..O|O...xxxxx          ");
+            System.out.println("                          ..O|O....xxxxx          ");
+            System.out.println("                          .O|O......xxxx          ");
+            System.out.println("                          ..O|O......xx           ");
+            System.out.println("                          ..............          ");
+            System.out.println("                            xxxx    xxxx          ");
+            System.out.println("                             xx      xx           ");
 
 
-                //apple
-            }else if (month == 9){
-                System.out.println("                                kxdx              ");
-                System.out.println("                              dddddd              ");
-                System.out.println("                            dddddddd              ");
-                System.out.println("                           ddddddddx              ");
-                System.out.println("                         ddddddddddx              ");
-                System.out.println("                         ddddddddo    :           ");
-                System.out.println("                         dxdddolc     ;,'',       ");
-                System.out.println("         :              clllc            ;,'';    ");
-                System.out.println("       :                                  ;,,'.   ");
-                System.out.println("      :                                     ;,'.  ");
-                System.out.println("     ;                                      ;,,'. ");
-                System.out.println("    ;                                         ,,.'");
-                System.out.println("    :                                        ;,,'.");
-                System.out.println("    :           000            000           ;,,'.");
-                System.out.println("     :         00000          00000          ;,,'.");
-                System.out.println("    :           000  W  W   W  000           ,,,.,");
-                System.out.println("     :                 W  W                 ;,,'. ");
-                System.out.println("     :                                      ,,,.; ");
-                System.out.println("      :                                    ;,,.   ");
-                System.out.println("       :                                  ;,,.'   ");
-                System.out.println("        :                                ;,'.,    ");
-                System.out.println("          :                             ;,'.,     ");
-                System.out.println("           :                          ;,'.,       ");
-                System.out.println("              :                     ;,'.,         ");
-                System.out.println("                 :               ;,'.,            ");
-                System.out.println("                  ',         ,''',:               ");
-                System.out.println("                    '........';                   ");
+            //apple
+        }else if (month == 9){
+            System.out.println("                                kxdx              ");
+            System.out.println("                              dddddd              ");
+            System.out.println("                            dddddddd              ");
+            System.out.println("                           ddddddddx              ");
+            System.out.println("                         ddddddddddx              ");
+            System.out.println("                         ddddddddo    :           ");
+            System.out.println("                         dxdddolc     ;,'',       ");
+            System.out.println("         :              clllc            ;,'';    ");
+            System.out.println("       :                                  ;,,'.   ");
+            System.out.println("      :                                     ;,'.  ");
+            System.out.println("     ;                                      ;,,'. ");
+            System.out.println("    ;                                         ,,.'");
+            System.out.println("    :                                        ;,,'.");
+            System.out.println("    :           000            000           ;,,'.");
+            System.out.println("     :         00000          00000          ;,,'.");
+            System.out.println("    :           000  W  W   W  000           ,,,.,");
+            System.out.println("     :                 W  W                 ;,,'. ");
+            System.out.println("     :                                      ,,,.; ");
+            System.out.println("      :                                    ;,,.   ");
+            System.out.println("       :                                  ;,,.'   ");
+            System.out.println("        :                                ;,'.,    ");
+            System.out.println("          :                             ;,'.,     ");
+            System.out.println("           :                          ;,'.,       ");
+            System.out.println("              :                     ;,'.,         ");
+            System.out.println("                 :               ;,'.,            ");
+            System.out.println("                  ',         ,''',:               ");
+            System.out.println("                    '........';                   ");
 
-                //ghost
-            }else if (month == 10){
-                System.out.println("                        ;;;;;                     ");
-                System.out.println("                ;                 ;               ");
-                System.out.println("              ;                      ;            ");
-                System.out.println("            ;                          ;          ");
-                System.out.println("           :                             ;        ");
-                System.out.println("          ;                               ;       ");
-                System.out.println("          :                                ;      ");
-                System.out.println("         :                                   :    ");
-                System.out.println("         ;                                   ;    ");
-                System.out.println("         :         :00:              ;00:     :   ");
-                System.out.println("          :       :0000:            ;0000:    :   ");
-                System.out.println("          :        :00:   W   W  W   :00;     :   ");
-                System.out.println("          :                 W   W            ;    ");
-                System.out.println("           :                                 ;    ");
-                System.out.println("           :                                 ;    ");
-                System.out.println("           :                                ;     ");
-                System.out.println("           ;                               ;      ");
-                System.out.println("          ;                               ;       ");
-                System.out.println("         ;                               ;        ");
-                System.out.println("       ;                               ;          ");
-                System.out.println("          ;                         ;             ");
-                System.out.println("           ;                      ;               ");
-                System.out.println("              ;;;;        ;;;;;;                  ");
-                System.out.println("                   ;;;;;                          ");
+            //ghost
+        }else if (month == 10){
+            System.out.println("                        ;;;;;                     ");
+            System.out.println("                ;                 ;               ");
+            System.out.println("              ;                      ;            ");
+            System.out.println("            ;                          ;          ");
+            System.out.println("           :                             ;        ");
+            System.out.println("          ;                               ;       ");
+            System.out.println("          :                                ;      ");
+            System.out.println("         :                                   :    ");
+            System.out.println("         ;                                   ;    ");
+            System.out.println("         :         :00:              ;00:     :   ");
+            System.out.println("          :       :0000:            ;0000:    :   ");
+            System.out.println("          :        :00:   W   W  W   :00;     :   ");
+            System.out.println("          :                 W   W            ;    ");
+            System.out.println("           :                                 ;    ");
+            System.out.println("           :                                 ;    ");
+            System.out.println("           :                                ;     ");
+            System.out.println("           ;                               ;      ");
+            System.out.println("          ;                               ;       ");
+            System.out.println("         ;                               ;        ");
+            System.out.println("       ;                               ;          ");
+            System.out.println("          ;                         ;             ");
+            System.out.println("           ;                      ;               ");
+            System.out.println("              ;;;;        ;;;;;;                  ");
+            System.out.println("                   ;;;;;                          ");
 
-                //turkey
-            }else if (month == 11){
-                System.out.println("                     xxxxxxxxx                    ");
-                System.out.println("                  ssssssssssssss                  ");
-                System.out.println("         ssssssss;ssssssssssssss;sssss            ");
-                System.out.println("        xxxxxxxx:;xxxxxxxxxxxxxx;:xxxxxx          ");
-                System.out.println("       xxxxxxxxx;sssssssssssssss;sssssssss        ");
-                System.out.println("      xxxxxxxxxx;xxxxsllllllxxxxkxkkkkkkkol       ");
-                System.out.println("     xx:xxxxxxxxxxxxxxllllllxxxxxxxxxxxxxx:xx     ");
-                System.out.println("  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   ");
-                System.out.println("  xxxxxxxxxxxxxxxx:             :xxxxxxxxxxxxxx   ");
-                System.out.println("  xxxxxxxxxxxxx;                  ;:xxxxxxxxxxxx  ");
-                System.out.println("  xxxxxxxxxx:                        ;xxxxxxxxxx  ");
-                System.out.println("  xx:xxxxxx;                          ,xxxxxx:    ");
-                System.out.println(" xxxxxxxxx;                            ,:xxxxxxxx ");
-                System.out.println(" xxxxxxxx;       00           000      ,,xxxxxxxx ");
-                System.out.println(" xxxxxxxc,      0000         00000      ';xxxxxxx ");
-                System.out.println("  xxxxxx:    ;;; 00    ;;;;; '000 ;;    ,,xxxxxx  ");
-                System.out.println("   xxxx;    ;;;;;    ;;;;;;;    ;;;;;    ,,:xx    ");
-                System.out.println("    xx:',    ;;;; ;;; ;;;;;  ;; ;;;; ::::;,;x     ");
-                System.out.println("     :;;;;,;      ;;;;      ;;;;      :;,;;;;x    ");
-                System.out.println("           ;      ;;;;;      ;;;;    ;;           ");
-                System.out.println("            :                ;;;    ;;            ");
-                System.out.println("              :;                  ;;              ");
-                System.out.println("               :;                  ::             ");
-                System.out.println("               ::   ::      ::    ::              ");
-                System.out.println("               :   ::        ::  ::               ");
-                System.out.println("                 ::            ::                 ");
+            //turkey
+        }else if (month == 11){
+            System.out.println("                     xxxxxxxxx                    ");
+            System.out.println("                  ssssssssssssss                  ");
+            System.out.println("         ssssssss;ssssssssssssss;sssss            ");
+            System.out.println("        xxxxxxxx:;xxxxxxxxxxxxxx;:xxxxxx          ");
+            System.out.println("       xxxxxxxxx;sssssssssssssss;sssssssss        ");
+            System.out.println("      xxxxxxxxxx;xxxxsllllllxxxxkxkkkkkkkol       ");
+            System.out.println("     xx:xxxxxxxxxxxxxxllllllxxxxxxxxxxxxxx:xx     ");
+            System.out.println("  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   ");
+            System.out.println("  xxxxxxxxxxxxxxxx:             :xxxxxxxxxxxxxx   ");
+            System.out.println("  xxxxxxxxxxxxx;                  ;:xxxxxxxxxxxx  ");
+            System.out.println("  xxxxxxxxxx:                        ;xxxxxxxxxx  ");
+            System.out.println("  xx:xxxxxx;                          ,xxxxxx:    ");
+            System.out.println(" xxxxxxxxx;                            ,:xxxxxxxx ");
+            System.out.println(" xxxxxxxx;       00           000      ,,xxxxxxxx ");
+            System.out.println(" xxxxxxxc,      0000         00000      ';xxxxxxx ");
+            System.out.println("  xxxxxx:    ;;; 00    ;;;;; '000 ;;    ,,xxxxxx  ");
+            System.out.println("   xxxx;    ;;;;;    ;;;;;;;    ;;;;;    ,,:xx    ");
+            System.out.println("    xx:',    ;;;; ;;; ;;;;;  ;; ;;;; ::::;,;x     ");
+            System.out.println("     :;;;;,;      ;;;;      ;;;;      :;,;;;;x    ");
+            System.out.println("           ;      ;;;;;      ;;;;    ;;           ");
+            System.out.println("            :                ;;;    ;;            ");
+            System.out.println("              :;                  ;;              ");
+            System.out.println("               :;                  ::             ");
+            System.out.println("               ::   ::      ::    ::              ");
+            System.out.println("               :   ::        ::  ::               ");
+            System.out.println("                 ::            ::                 ");
 
-                //candy cane
-            }else if (month == 12){
-                System.out.println("                  :;,;oooooooooooooo              ");
-                System.out.println("              ,,:ooooo         oo;,,;             ");
-                System.out.println("          ,,:oooooo;,           ooo;,;;,:         ");
-                System.out.println("        ':oooooooo                ,.;oo:;:        ");
-                System.out.println("     ;'ooooooooo;'..'           ;'..,oooooo,;     ");
-                System.out.println("    ,oooooooooooo::ooo         ooc:ooooooooc;     ");
-                System.out.println("   '     ooooooo;;:::oo      oooo;:oooooooooo:    ");
-                System.out.println("  '        ooooo    oo       oooo;::::oooooooox   ");
-                System.out.println(" 'o          oooooooooo::oooo   oooooooooo     x| ");
-                System.out.println(" ,oo            oooooooooooo    ooooooo          |");
-                System.out.println(" ooooo             oo;:ooooooo ooooooo           |");
-                System.out.println(" oooooooo           ;;       |oooo              x|");
-                System.out.println(" ooooooooooo        '        |o               ooo|");
-                System.out.println(" oooooooooooo      '         |             oooooo|");
-                System.out.println(" .ooooooooooooooooo          |          ooooooooo|");
-                System.out.println("   'oooooooooooooo           |        ooooooooooo|");
-                System.out.println("     oooooooooooo            |     oooooooooooooo|");
-                System.out.println("        oooooo               |   ooooooooooooo   |");
-                System.out.println("                             | oooooooooooo      |");
-                System.out.println("                             | ooooooooo        o|");
-                System.out.println("                             |ooooooo          oo|");
-                System.out.println("                             |                oo0|");
-                System.out.println("                             |              ooooo|");
-                System.out.println("                             |            ooooooo|");
-                System.out.println("                             |          ooooooooo|");
-                System.out.println("                             |       oooooooooooo|");
-                System.out.println("                             |     ooooooooooooo |");
-                System.out.println("                             |  oooooooooooooooo |");
-                System.out.println("                             |oooooooooooooo     |");
-                System.out.println("                             |oooooooooooo       |");
-                System.out.println("                             |oooooooooo         |");
-                System.out.println("                             |ooooooo           o|");
-                System.out.println("                             |ooo             ooo|");
-                System.out.println("                             |o            oooooo|");
-                System.out.println("                             |          Xoooooooo|");
-                System.out.println("                             |        ooooooooooo|");
-                System.out.println("                             |     oooooooooooooo|");
-                System.out.println("                             | oooooooooooooo    |");
-                System.out.println("                             |oooooooooooooo     |");
-                System.out.println("                             |ooooooooooo        |");
-                System.out.println("                             |oooooood           |");
-                System.out.println("                             |oooooo             |");
-                System.out.println("                             |oooK             oo|");
-                System.out.println("                             |o             oooo:|");
-                System.out.println("                             |            oooooo:|");
-                System.out.println("                             |         ooooooooo:|");
-                System.out.println("                             |       ooooooooooo:|");
-                System.out.println("                             |    oooooooooooooo:|");
-                System.out.println("                             ,:ooooooooooooooooo;|");
-                System.out.println("                             o.;oooooooooooooooo.|");
-                System.out.println("                              o',ooooooooooooo:'  ");
-                System.out.println("                                 ,,;ooooooo:,'    ");
-                System.out.println("                                  o:,,'''',:      ");
-                System.out.println("                                     '...'        ");
+            //candy cane
+        }else if (month == 12){
+            System.out.println("                  :;,;oooooooooooooo              ");
+            System.out.println("              ,,:ooooo         oo;,,;             ");
+            System.out.println("          ,,:oooooo;,           ooo;,;;,:         ");
+            System.out.println("        ':oooooooo                ,.;oo:;:        ");
+            System.out.println("     ;'ooooooooo;'..'           ;'..,oooooo,;     ");
+            System.out.println("    ,oooooooooooo::ooo         ooc:ooooooooc;     ");
+            System.out.println("   '     ooooooo;;:::oo      oooo;:oooooooooo:    ");
+            System.out.println("  '        ooooo    oo       oooo;::::oooooooox   ");
+            System.out.println(" 'o          oooooooooo::oooo   oooooooooo     x| ");
+            System.out.println(" ,oo            oooooooooooo    ooooooo          |");
+            System.out.println(" ooooo             oo;:ooooooo ooooooo           |");
+            System.out.println(" oooooooo           ;;       |oooo              x|");
+            System.out.println(" ooooooooooo        '        |o               ooo|");
+            System.out.println(" oooooooooooo      '         |             oooooo|");
+            System.out.println(" .ooooooooooooooooo          |          ooooooooo|");
+            System.out.println("   'oooooooooooooo           |        ooooooooooo|");
+            System.out.println("     oooooooooooo            |     oooooooooooooo|");
+            System.out.println("        oooooo               |   ooooooooooooo   |");
+            System.out.println("                             | oooooooooooo      |");
+            System.out.println("                             | ooooooooo        o|");
+            System.out.println("                             |ooooooo          oo|");
+            System.out.println("                             |                oo0|");
+            System.out.println("                             |              ooooo|");
+            System.out.println("                             |            ooooooo|");
+            System.out.println("                             |          ooooooooo|");
+            System.out.println("                             |       oooooooooooo|");
+            System.out.println("                             |     ooooooooooooo |");
+            System.out.println("                             |  oooooooooooooooo |");
+            System.out.println("                             |oooooooooooooo     |");
+            System.out.println("                             |oooooooooooo       |");
+            System.out.println("                             |oooooooooo         |");
+            System.out.println("                             |ooooooo           o|");
+            System.out.println("                             |ooo             ooo|");
+            System.out.println("                             |o            oooooo|");
+            System.out.println("                             |          Xoooooooo|");
+            System.out.println("                             |        ooooooooooo|");
+            System.out.println("                             |     oooooooooooooo|");
+            System.out.println("                             | oooooooooooooo    |");
+            System.out.println("                             |oooooooooooooo     |");
+            System.out.println("                             |ooooooooooo        |");
+            System.out.println("                             |oooooood           |");
+            System.out.println("                             |oooooo             |");
+            System.out.println("                             |oooK             oo|");
+            System.out.println("                             |o             oooo:|");
+            System.out.println("                             |            oooooo:|");
+            System.out.println("                             |         ooooooooo:|");
+            System.out.println("                             |       ooooooooooo:|");
+            System.out.println("                             |    oooooooooooooo:|");
+            System.out.println("                             ,:ooooooooooooooooo;|");
+            System.out.println("                             o.;oooooooooooooooo.|");
+            System.out.println("                              o',ooooooooooooo:'  ");
+            System.out.println("                                 ,,;ooooooo:,'    ");
+            System.out.println("                                  o:,,'''',:      ");
+            System.out.println("                                     '...'        ");
 
-            }
+        }
 
     }
 

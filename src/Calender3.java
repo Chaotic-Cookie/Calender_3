@@ -282,7 +282,9 @@ public class Calender3 {
 
         while(input.hasNextLine()){
             String dateString = input.nextLine();
+            String eventName = dateString.substring(6);
             dateString = dateString.substring(0, 5);
+
             int eventMonth = monthFromDate(dateString);
             eventMonth -= 1;
 
@@ -294,7 +296,7 @@ public class Calender3 {
             if(eventDay > 31){
                 return;
             }
-            String eventName = "arr.substring(6, arr.length())";
+            //String eventName = "arr.substring(6, arr.length())";
             if(eventMonth == month){
                 if(eventName != null){
                     System.out.println();

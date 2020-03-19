@@ -265,7 +265,7 @@ public class Calender3 {
         String word = "";
         System.out.print("Would you like to upload your own file? (Y/N) ");
 
-        if(word.("yes")){
+        if(word.equalsIgnoreCase("y")){
             System.out.print("Event file name: ");
             String file = input.next();
             return file;
@@ -276,18 +276,18 @@ public class Calender3 {
         return ;
     }
 
-    public static void printingFile() { //needs to print the asci art, calander month and save file
+    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which month would you like to print? ");
         String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
-        int month = 12 // Change this!
+        int month = 12; // Change this!
         System.out.print("Which file would you like to save too? ");
         String filesave = input.next();
         PrintStream output = new PrintStream(new File(filesave));
         System.setOut(PrintStream output);  // This causes any Print statements to print
         // to the printstream instead of the console
-        drawMonth(month)
-        System.setOut(Console);
+        drawMonth(month);
+        System.setOut(output);
 
     }
 

@@ -218,10 +218,11 @@ public class Calender3 {
 
     public static int[][] monthArray() {
         Int[][] arr = new Int[12][];
+        int daysinmonth;
         for (int i = 0; i < arr.length; i++) {
             int months = i + 1;
-            int daysinmonth = LastDayofMonth(months);
-            arr[i] = new String[daysinmonth];
+            daysinmonth = LastDayofMonth(months);
+            arr[i] = daysinmonth
         }
         return arr;
 

@@ -60,7 +60,7 @@ public class Calender3 {
                 displayDate(month, day);
 
             } else if (word.equals("ev")) { //adds an event
-                makingEvents();
+                //makingEvents();
 
             } else if(word.equals("fp")){ //prints to file
                 printingFile();
@@ -106,7 +106,7 @@ public class Calender3 {
             weeks = 5;
         }
 
-        drawWeek(lastday, firstday, day, weeks, month,);
+        drawWeek(lastday, firstday, day, weeks, month);
         System.out.println();
 
     }

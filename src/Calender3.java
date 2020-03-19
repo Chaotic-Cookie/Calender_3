@@ -106,20 +106,18 @@ public class Calender3 {
             weeks = 5;
         }
 
-        drawWeek(lastday, firstday, day, weeks, month, int row, int drawNumberRow, int drawEventRow, int drawEmptyRow);
-
+        drawWeek(lastday, firstday, day, weeks, month,);
         System.out.println();
 
     }
 
-    public static void drawWeek(int lastday,int firstday,int day, int weeks, int month, int row,
-                                int drawNumberRow, int drawEventRow, int drawEmptyRow){
+    public static void drawWeek(int lastday,int firstday,int day, int weeks, int month){
         // Prints the bar.
         boolean placeholder = false;
         drawBar();
         for (int i = 0; i < weeks; i++){
             drawNumberRow(i, lastday, firstday, day);
-            drawEventRow(row, firstday, month);
+            drawEventRow(i, firstday, month);
             drawEmptyRows(3);// the 4 will become 3 when drawEventRow is put in.
             drawBar();
         }

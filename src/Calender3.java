@@ -118,15 +118,10 @@ public class Calender3 {
         drawBar();
         for (int i = 0; i < weeks; i++){
             drawNumberRow(i, lastday, firstday, day);
-            if (placeholder){ // If we have an event for the week.
-                // Draw event row.
-                drawEmptyRows(3);
-            }else{
-                drawEmptyRows(4);
-            }
+            //drawEventRow();
+            drawEmptyRows(4);// the 4 will become 3 when drawEventRow is put in.
             drawBar();
         }
-
     }
 
     public static void drawBar(){

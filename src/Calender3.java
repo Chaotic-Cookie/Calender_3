@@ -283,7 +283,7 @@ public class Calender3 {
         System.out.print("Which file would you like to save too? ");
         String filesave = input.next();
         PrintStream output = new PrintStream(new File(filesave));
-        System.setOut(PrintStream output);  // This causes any Print statements to print
+        System.setOut(output);  // This causes any Print statements to print
         // to the printstream instead of the console
         drawMonth(month);
         System.setOut(output);

@@ -251,9 +251,15 @@ public class Calender3 {
     }
 
     public static void makingEvents() throws FileNotFoundException{
-        File f = new File(fileName());
+        File f = new File(fileName()); // This should be your event file.
+        PrintStream pOut = new PrintStream(f);
+        // Get a date from a user.
+        String date = "Date from user ##/##"
         System.out.print("Event information: ");
         File eventName = new File(input.nextLine());
+
+
+
 
     }
 

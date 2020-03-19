@@ -306,14 +306,24 @@ public class Calender3 {
 
     }
 
-    public static void drawEventRow(int month, int day) {
+    public static void drawEventRow(int row, int firstday, int month) {
+        int position = row * 7;
+        int currentDay;
+        int lastday = LastDayofMonth(month);
+        String event;
         for (int l = 1; l <= 7; l++) {
-
-            if (arr[month - 1][day] != null) {
-                System.out.print(arr[month - 1][day]);
-                System.out.print(" ");
+            position = (row * 7 + l);
+            currentDay = (position - firstday + 1);
+            if (currentDay > 0 && currentDay <= lastday){
+                if (arr[month - 1][currentDay] != null) {
+                    event = arr[month - 1][currentDay];
+                    System.out.print(event);
+                    drawSpaces(SIZE - event.length());
+                } else {
+                    drawSpaces(SIZE);
+                }
             } else {
-                System.out.print(" ");
+                drawSpaces(SIZE);
             }
             System.out.print("|");
         }

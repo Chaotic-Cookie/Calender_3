@@ -1,4 +1,6 @@
 
+import javafx.css.CssParser;
+
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +16,7 @@ public class Calender3 {
 
     public static final int SIZE = 10;
     public static Scanner input = new Scanner(System.in);
-    private static String[][] arr = new String[12][];
+    //private String[][] arr;
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -23,6 +25,8 @@ public class Calender3 {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH) + 1;
+
+        String[][] arr = monthArray();
 
         String word = " ";
         String toQuit = "no";
@@ -34,13 +38,13 @@ public class Calender3 {
                 date = input.next();
                 month = monthFromDate(date); //gets me the month
                 day = dayFromDate(date); // gets me the day
-                drawMonth(month, day);
+                drawMonth(month, day, arr);
                 displayDate(month, day);
 
             } else if (word.equals("t")) {
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH) + 1;
-                drawMonth(month, day);
+                drawMonth(month, day, arr);
                 displayDate(month, day);
 
             } else if (word.equals("n")) { //this has it wrap around from jan to dec
@@ -48,7 +52,7 @@ public class Calender3 {
                 if (month > 12) {
                     month = 1;
                 }
-                drawMonth(month, day);
+                drawMonth(month, day, arr);
                 displayDate(month, day);
 
             } else if (word.equals("p")) { // same as n but vise versa
@@ -56,14 +60,14 @@ public class Calender3 {
                 if (month < 1) {
                     month = 12;
                 }
-                drawMonth(month, day);
+                drawMonth(month, day, arr);
                 displayDate(month, day);
 
             } else if (word.equals("ev")) { //adds an event
                 //makingEvents(month);
 
             } else if(word.equals("fp")){ //prints to file
-                printingFile();
+                printingFile(arr);
 
             }else if(word.equals("q")) { //quit
                 toQuit = "yes";
@@ -75,7 +79,7 @@ public class Calender3 {
     }
 
 
-    public static void drawMonth(int month, int day) {
+    public static void drawMonth(int month, int day, String[][] arr) {
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.MONTH, month - 1);
@@ -106,19 +110,19 @@ public class Calender3 {
             weeks = 5;
         }
 
-        drawWeek(lastday, firstday, day, weeks);
+        drawWeek(lastday, firstday, day, weeks, month, arr);
 
         System.out.println();
 
     }
 
-    public static void drawWeek(int lastday,int firstday,int day, int weeks){
+    public static void drawWeek(int lastday,int firstday,int day, int weeks, int month, String[][] arr){
         // Prints the bar.
         boolean placeholder = false;
         drawBar();
         for (int i = 0; i < weeks; i++){
-            drawNumberRow(i, lastday, firstday, day);
-            //drawEventRow();
+            drawNumberRow(i, lastday, firstday, month);
+            drawEventRow(i, firstday, month, arr);
             drawEmptyRows(4);// the 4 will become 3 when drawEventRow is put in.
             drawBar();
         }
@@ -137,7 +141,10 @@ public class Calender3 {
         // Do a thing 7 times.
         for(int i = 1; i <= 7; i++) {
             position = (row * 7 + i);
-            currentDay = (position - firstday + 1);
+            if (firstday == 0){
+                firstday = 7;
+            }
+            currentDay = (position - (firstday - 1));
 
             System.out.print("|");
 
@@ -154,7 +161,7 @@ public class Calender3 {
             String s = " " + currentDay;
             if (currentDay < 10 && currentDay > 0){
                 if (currentDay == day){
-                    drawSpaces(SIZE - 2);
+                    drawSpaces(SIZE - 4);
                 }else{
                     drawSpaces(SIZE - 3);
                 }
@@ -321,7 +328,7 @@ public class Calender3 {
         return word;
     }
 
-    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
+    public static void printingFile(String[][] arr) throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which date would you like to print? ");
         //String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
@@ -336,12 +343,37 @@ public class Calender3 {
         PrintStream console = new PrintStream(System.out);
         System.setOut(output);  // This causes any Print statements to print
                                 // to the printstream instead of the console
-        drawMonth(month, day);
+        drawMonth(month, day, arr);
         System.setOut(console);
 
 
     }
 
+    public static void drawEventRow(int row, int firstday, int month, String[][] arr) {
+        int position = row * 7;
+        int currentDay;
+        int lastday = LastDayofMonth(month);
+        String event;
+        System.out.print("|");
+        for (int l = 1; l <= 7; l++) {
+            position = (row * 7 + l);
+            currentDay = (position - (firstday + 1));
+
+            if (currentDay > 0 && currentDay <= lastday){
+                if (arr[month - 1][currentDay-1] != null) {
+                    event = arr[month - 1][currentDay-1];
+                    System.out.print(event);
+                    drawSpaces(SIZE - event.length()-2);
+                } else {
+                    drawSpaces(SIZE-2);
+                }
+            } else {
+                drawSpaces(SIZE-2);
+            }
+            System.out.print("|");
+        }
+        System.out.println();
+    }
 
 
     public static void drawArt(int month){

@@ -1,11 +1,14 @@
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.net.ProxySelector;
+import java.text.spi.BreakIteratorProvider;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class cal_3 {
+public class Calender3 {
 
     //i live
 
@@ -57,10 +60,10 @@ public class cal_3 {
                 displayDate(month, day);
 
             } else if (word.equals("ev")) { //adds an event
-                makingEvents(month);
+                //makingEvents(month);
 
             } else if(word.equals("fp")){ //prints to file
-                printingFile(month);
+                printingFile();
 
             }else if(word.equals("q")) { //quit
                 toQuit = "yes";
@@ -68,8 +71,6 @@ public class cal_3 {
             } else {
                 System.out.println("Please enter a valid command.");
             }
-
-
         }
     }
 
@@ -82,17 +83,14 @@ public class cal_3 {
         int year = 2020;
 
         int firstday = getFirst(month);
-        System.out.println(firstday);
         firstday = cal.get(Calendar.DAY_OF_WEEK);
-        System.out.println(firstday);
-        //firstday = getFirst(month);
+        firstday = getFirst(month);
 
         int lastday = LastDayofMonth(month);
         System.out.println();
         for (int space = 2; space <= (SIZE * 7) / 2; space++) {
             System.out.print(" ");
         }
-        System.out.print(month);
         System.out.println();
         drawArt(month);
         System.out.println(); //repeats the boarder of the rows
@@ -108,76 +106,91 @@ public class cal_3 {
             weeks = 5;
         }
 
-        for (int rep = 0; rep < weeks; rep++) {
-            drawRow(rep, lastday, firstday, day);
-        }
-        for (int line = 1; line <= 1; line++) {
-            for (int equal = 1; equal <= SIZE * 7; equal++) {
-                System.out.print("=");
-            }
-        }
+        drawWeek(lastday, firstday, day, weeks);
+
         System.out.println();
 
     }
 
-    public static void drawRow(int row, int lastday, int firstday, int day) { //this is the actual row for each week of the month
-        int offset = firstday - 1;
+    public static void drawWeek(int lastday,int firstday,int day, int weeks){
+        // Prints the bar.
+        boolean placeholder = false;
+        drawBar();
+        for (int i = 0; i < weeks; i++){
+            drawNumberRow(i, lastday, firstday, day);
+            //drawEventRow();
+            drawEmptyRows(4);// the 4 will become 3 when drawEventRow is put in.
+            drawBar();
+        }
+    }
 
-        for (int line = 1; line <= 1; line++) {
-            for (int equal = 1; equal <= SIZE * 7; equal++) {
-                System.out.print("=");
-            }
+    public static void drawBar(){
+        for (int equal = 1; equal <= SIZE * 7; equal++) {
+            System.out.print("=");
         }
         System.out.println();
+    }
 
+    public static void drawNumberRow(int row, int lastday, int firstday, int day){
+        int position = row * 7;
+        int currentDay;
+        // Do a thing 7 times.
+        for(int i = 1; i <= 7; i++) {
+            position = (row * 7 + i);
+            currentDay = (position - firstday + 1);
 
-        //this one groups the weeks with single numbers
-        for (int column = 1; column <= 7; column++) {
-            for (int pipe = 1; pipe <= 1; pipe++) {
-                System.out.print("|");
-            }
+            System.out.print("|");
 
-            if (lastday < ((column + (row - 1) * 7) - offset) || (((column + (row - 1) * 7) - offset) <= 0)) {
-                System.out.print("  ");
+            if (lastday < (currentDay) || (currentDay) <= 0) {
+                System.out.print(" ");
 
-            } else if (lastday >= ((column + (row - 1) * 7) - offset)) {
-
-                if (((column + (row - 1) * 7) - offset) == day) {
-                    System.out.print((column + (row - 1) * 7) - offset + "*");
+            } else if (lastday >= currentDay) {
+                if (currentDay == day) {
+                    System.out.print(currentDay + "*");
                 } else {
-                    System.out.print((column + (row - 1) * 7) - offset);
+                    System.out.print(currentDay);
                 }
             }
-
-            String s = " " + ((column + (row - 1) * 7) - offset); //date prints
-
-            if (((column + (row - 1) * 7) - offset) == -1 || ((column + (row - 1) * 7) - offset) == 0) {
-                s = "-- ";
-            } else if (((column + (row - 1) * 7) - offset) == day) {
-                s = "    ";
+            String s = " " + currentDay;
+            if (currentDay < 10 && currentDay > 0){
+                if (currentDay == day){
+                    drawSpaces(SIZE - 2);
+                }else{
+                    drawSpaces(SIZE - 3);
+                }
+            } if (currentDay >= 10 && currentDay <= lastday){
+                if (currentDay == day ){
+                    drawSpaces(SIZE - 5);
+                }else{
+                    drawSpaces(SIZE -4);
+                }
+            } if (currentDay > lastday || currentDay <= 0){
+                drawSpaces(SIZE -3);
             }
-            for (int space = s.length(); space <= SIZE - 1; space++) {
-                System.out.print(" ");
-            }
+            //System.out.print("|");
+
         }
-
         System.out.println("|");
+    }
 
+    public static void drawSpaces(int spaces){
+        for (int space = 0; space <= spaces; space++) {
+            System.out.print(" ");
+        }
+    }
 
-        for (int embox = 1; embox <= 4; embox++) { //the double numbers rows are here
+    public static void drawEmptyRows(int rows){
+        for (int embox = 1; embox <= rows; embox++) { //the double numbers rows are here
             for (int emcolumn = 1; emcolumn <= 7; emcolumn++) {
                 for (int pipe = 1; pipe <= 1; pipe++) {
                     System.out.print("|");
                 }
-
                 for (int space2 = 1; space2 <= SIZE - 1; space2++) {
                     System.out.print(" ");
                 }
-
             }
             System.out.println("|");
         }
-
     }
 
     public static void displayDate(int month, int day) { //displays the date
@@ -241,7 +254,6 @@ public class cal_3 {
         } else {
             for (int i = 1; i <= month - 1; i++) {
                 totaldays += LastDayofMonth(i);
-                System.out.println(totaldays);
             }
         }
         return (totaldays) % 7;
@@ -255,13 +267,42 @@ public class cal_3 {
 
     }
 
-    public static void makingEvents() throws FileNotFoundException{
+    public static void makingEvents(int file, int month, String[][] arr) throws FileNotFoundException{
         File f = new File(fileName()); // This should be your event file.
+        //if(!f.exists()){
+        //return;
+
+        while(input.hasNextLine()){
+            String dateString = input.nextLine();
+            String eventName = dateString.substring(6);
+            dateString = dateString.substring(0, 5);
+
+            int eventMonth = monthFromDate(dateString);
+            eventMonth -= 1;
+
+            if(eventMonth > 12){
+                return;
+            }
+            int eventDay = dayFromDate(dateString);
+            eventDay -= 1;
+            if(eventDay > 31){
+                return;
+            }
+            //String eventName = "arr.substring(6, arr.length())";
+            if(eventMonth == month){
+                if(eventName != null){
+                    System.out.println();
+                }
+                arr[eventMonth][eventDay] = eventName;
+            }
+
+        }
         PrintStream pOut = new PrintStream(f);
         // Get a date from a user.
-        String date = "Date from user ##/##";
+        String date = "Date from user ##/##"; //Change this
         System.out.print("Event information: ");
-        File eventName = new File(input.nextLine());
+        String event = input.nextLine();
+        pOut.println(date + event);
 
     }
 
@@ -280,21 +321,25 @@ public class cal_3 {
         return word;
     }
 
-    public static void printingFile(int day) throws FileNotFoundException { //needs to print the asci art, calander month and save file
+    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which date would you like to print? ");
-        String printMonth = input.next();
+        //String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
-        int month = 12;
+        int[] date = getDateFromUser();
 
-        System.out.print("Which file would you like to save too? ");
+        int month = date[1];
+        int day = date[0];
+
+        System.out.print("Which file would you like to save to? ");
         String filesave = input.next();
-        while(){
-            PrintStream output = new PrintStream(new File(filesave));
-            System.setOut(output);  // This causes any Print statements to print
-            // to the printstream instead of the console
-            drawMonth(month, day);
-            System.setOut(output);
-        }
+        PrintStream output = new PrintStream(new File(filesave));
+        PrintStream console = new PrintStream(System.out);
+        System.setOut(output);  // This causes any Print statements to print
+                                // to the printstream instead of the console
+        drawMonth(month, day);
+        System.setOut(console);
+
+
     }
 
 

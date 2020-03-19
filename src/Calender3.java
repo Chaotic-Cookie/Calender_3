@@ -315,7 +315,7 @@ public class Calender3 {
             currentDay = (position - firstday + 1);
             if (currentDay > 0 && currentDay <= lastday){
                 if (arr[month - 1][currentDay] != null) {
-                    event = arr[month - 1][currentDay];
+                    event = arr[month - 1][currentDay-1];
                     System.out.print(event);
                     drawSpaces(SIZE - event.length());
                 } else {

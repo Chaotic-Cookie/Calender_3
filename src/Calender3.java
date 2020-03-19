@@ -255,40 +255,13 @@ public class cal_3 {
 
     }
 
-    public static void makingEvents(int file, int month, String[][] arr) throws FileNotFoundException{
+    public static void makingEvents() throws FileNotFoundException{
         File f = new File(fileName()); // This should be your event file.
-        if(!f.exists()){
-            return;
-        }
-        while(input.hasNextLine()){
-            String dateString = input.nextLine();
-            dateString = input.substring(0, 5);
-            int eventMonth = monthFromDate(dateString);
-            eventMonth -= 1;
-
-            if(eventMonth > 12){
-                return;
-            }
-            int eventDay = dayFromDate(dateString);
-            eventDay -= 1;
-            if(eventDay > 31){
-                return;
-            }
-            String eventName = arr.substring(6, arr.length());
-            if(eventMonth == month){
-                if(eventName != null){
-                    System.out.println();
-                }
-                arr[eventMonth][eventDay] = eventName;
-            }
-
-        }
         PrintStream pOut = new PrintStream(f);
         // Get a date from a user.
-        String date = "Date from user ##/##"; //Change this
+        String date = "Date from user ##/##"
         System.out.print("Event information: ");
-        String event = input.nextLine();
-        pOut.println(date + event);
+        File eventName = new File(input.nextLine());
 
     }
 

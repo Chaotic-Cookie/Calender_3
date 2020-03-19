@@ -32,11 +32,13 @@ public class Calender3 {
                 day = dayFromDate(date); // gets me the day
                 drawMonth(month, day);
                 displayDate(month, day);
+
             } else if (word.equals("t")) {
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH) + 1;
                 drawMonth(month, day);
                 displayDate(month, day);
+
             } else if (word.equals("n")) { //this has it wrap around from jan to dec
                 month++;
                 if (month > 12) {
@@ -44,6 +46,7 @@ public class Calender3 {
                 }
                 drawMonth(month, day);
                 displayDate(month, day);
+
             } else if (word.equals("p")) { // same as n but vise versa
                 month--;
                 if (month < 1) {
@@ -51,13 +54,16 @@ public class Calender3 {
                 }
                 drawMonth(month, day);
                 displayDate(month, day);
+
             } else if (word.equals("ev")) { //adds an event
-                //makingEvents();
+                makingEvents();
 
             } else if(word.equals("fp")){ //prints to file
+                printingFile();
 
             }else if(word.equals("q")) { //quit
                 toQuit = "yes";
+
             } else {
                 System.out.println("Please enter a valid command.");
             }

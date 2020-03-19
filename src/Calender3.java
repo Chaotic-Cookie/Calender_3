@@ -230,11 +230,10 @@ public class Calender3 {
 
     public static int getFirst(int month) {
         int totaldays = 4;
-
         if (month == 1) {
             return 4;
         } else {
-            for (int i = 1; i <= month - 1; i++) {
+            for (int i = 1; i < month; i++) {
                 totaldays += LastDayofMonth(i);
                 System.out.println(totaldays);
             }
@@ -251,7 +250,7 @@ public class Calender3 {
     }
 
     public static void makingEvents() throws FileNotFoundException{
-        File f = new File(fileName()); // This should be your event file.
+        File f = new File("calendarEvents.txt"); // This should be your event file.
         PrintStream pOut = new PrintStream(f);
         // Get a date from a user.
         String date = "Date from user ##/##"; //Change this
@@ -261,7 +260,7 @@ public class Calender3 {
 
     }
 
-    public static String fileName() {
+    public static void loadEventFile() {
         String word = "";
         System.out.print("Would you like to upload your own file? (Y/N) ");
 
@@ -273,10 +272,10 @@ public class Calender3 {
             new File("calanderEvents.txt");
         }
 
-        return ;
+        //return ;
     }
 
-    public static void printingFile() { //needs to print the asci art, calander month and save file
+    public static void printingFile() throws FileNotFoundException { //needs to print the asci art, calander month and save file
         System.out.print("Which month would you like to print? ");
         String printMonth = input.next();
         // You gotta get the month as an integer so you can pass it into drawMonth()
@@ -284,10 +283,11 @@ public class Calender3 {
         System.out.print("Which file would you like to save too? ");
         String filesave = input.next();
         PrintStream output = new PrintStream(new File(filesave));
-        System.setOut(PrintStream output);  // This causes any Print statements to print
+        PrintStream console = System.out;
+        System.setOut(output);  // This causes any Print statements to print
         // to the printstream instead of the console
-        drawMonth(month)
-        System.setOut(Console);
+        drawMonth(month, 01);
+        System.setOut(console);
 
     }
 

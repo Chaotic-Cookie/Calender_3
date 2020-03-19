@@ -121,7 +121,7 @@ public class Calender3 {
         boolean placeholder = false;
         drawBar();
         for (int i = 0; i < weeks; i++){
-            drawNumberRow(i, lastday, firstday, month);
+            drawNumberRow(i, lastday, firstday, day);
             drawEventRow(i, firstday, month, arr);
             drawEmptyRows(4);// the 4 will become 3 when drawEventRow is put in.
             drawBar();
